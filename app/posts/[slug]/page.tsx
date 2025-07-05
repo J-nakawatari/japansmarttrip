@@ -89,7 +89,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
           
           {/* Article Content */}
           <div
-            className="prose prose-lg max-w-none prose-headings:text-base-content prose-p:text-base-content/80 prose-strong:text-base-content prose-code:text-primary prose-pre:bg-base-200 prose-blockquote:border-l-primary prose-blockquote:text-base-content/70"
+            className="prose prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }}
           />
 

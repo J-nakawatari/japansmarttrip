@@ -70,7 +70,16 @@ export async function getPostData(slug: string): Promise<PostData> {
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  let contentHtml = processedContent.toString();
+
+  // Wrap tables in a responsive wrapper
+  contentHtml = contentHtml.replace(
+    /<table>/g,
+    '<div class="table-wrapper"><table>'
+  ).replace(
+    /<\/table>/g,
+    '</table></div>'
+  );
 
   // Combine the data with the slug and contentHtml
   return {

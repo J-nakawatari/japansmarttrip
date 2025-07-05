@@ -1,2 +1,236 @@
 @import "tailwindcss";
 
+/* Article Typography Improvements */
+.prose h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+  color: #2d3748;
+}
+
+.prose h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  margin-top: 2.5rem;
+  color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  color: #2d3748;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+  color: #2d3748;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
+  line-height: 1.75;
+  color: #4a5568;
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  line-height: 1.75;
+}
+
+.prose blockquote {
+  border-left: 4px solid #ec4899;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #fdf2f8;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #4a5568;
+  font-style: italic;
+}
+
+/* Enhanced Table Styling */
+.prose table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+/* Responsive table wrapper */
+.prose .table-wrapper {
+  overflow-x: auto;
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.prose table {
+  min-width: 100%;
+  background-color: white;
+}
+
+.prose th {
+  background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+  color: white;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.prose th:first-child {
+  border-radius: 0.75rem 0 0 0;
+}
+
+.prose th:last-child {
+  border-radius: 0 0.75rem 0 0;
+}
+
+.prose td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #4a5568;
+  white-space: nowrap;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 0.75rem;
+}
+
+.prose tbody tr:last-child td:last-child {
+  border-radius: 0 0 0.75rem 0;
+}
+
+.prose tr:nth-child(even) {
+  background-color: #fdf2f8;
+}
+
+.prose tr:nth-child(odd) {
+  background-color: white;
+}
+
+.prose tbody tr {
+  transition: all 0.2s ease;
+}
+
+.prose tbody tr:hover {
+  background-color: #fce7f3;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.15);
+}
+
+/* Special styling for first column */
+.prose td:first-child {
+  font-weight: 600;
+  color: #be185d;
+}
+
+/* Checkmark and X styling in tables */
+.prose td:contains("✅"),
+.prose td:contains("❌") {
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.prose strong {
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.prose a {
+  color: #ec4899;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.prose a:hover {
+  color: #be185d;
+}
+
+.prose code {
+  padding: 0.125rem 0.5rem;
+  background-color: #f7fafc;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #be185d;
+  font-family: monospace;
+}
+
+.prose pre {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
+
+/* Comparison Lists */
+.prose ul li strong:first-child {
+  color: #ec4899;
+  display: inline-block;
+  min-width: 140px;
+  margin-right: 0.5rem;
+}
+
+/* Mobile-optimized table */
+@media (max-width: 768px) {
+  .prose table {
+    font-size: 0.8rem;
+  }
+  
+  .prose th,
+  .prose td {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  /* Allow horizontal scroll on mobile */
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .prose h1 {
+    font-size: 2rem;
+  }
+  
+  .prose h2 {
+    font-size: 1.5rem;
+  }
+  
+  .prose h3 {
+    font-size: 1.25rem;
+  }
+}
+
