@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -68,6 +69,7 @@ export async function getPostData(slug: string): Promise<PostData> {
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
+    .use(remarkGfm) // Add GitHub Flavored Markdown support for tables
     .use(html)
     .process(matterResult.content);
   let contentHtml = processedContent.toString();
