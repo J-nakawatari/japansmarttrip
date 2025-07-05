@@ -29,89 +29,94 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="grid gap-6">
-                {posts.map((post, index) => (
-                  <article
-                    key={post.slug}
-                    className={`card bg-base-100 shadow-xl hover:shadow-2xl transition-all ${
-                      index === 0 ? 'md:card-side' : ''
-                    }`}
-                  >
-                    {/* Featured Image Placeholder */}
-                    <figure className={index === 0 ? 'md:w-2/5' : ''}>
-                      <div className={`bg-gradient-to-br from-primary to-secondary ${
-                        index === 0 ? 'h-full min-h-[300px]' : 'h-48'
-                      } w-full flex items-center justify-center`}>
-                        <svg className="w-24 h-24 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                    </figure>
-                    
-                    <div className="card-body">
-                      <div className="flex gap-2 mb-2">
-                        {post.tags.map((tag) => (
-                          <span key={tag} className="badge badge-secondary badge-sm">{tag}</span>
-                        ))}
-                      </div>
-                      
-                      <h3 className={`card-title ${index === 0 ? 'text-2xl' : 'text-xl'}`}>
-                        <Link href={`/posts/${post.slug}`} className="hover:text-primary transition-colors">
-                          {post.title}
-                        </Link>
-                      </h3>
-                      
-                      {index === 0 && (
-                        <p className="text-base-content/70">
-                          Get the most comprehensive guide to staying connected in Japan with our detailed comparison of SIM cards, pocket WiFi, and connectivity options...
-                        </p>
-                      )}
-                      
-                      <div className="card-actions justify-between items-center mt-4">
-                        <time className="text-sm opacity-70" dateTime={post.date}>
-                          {format(new Date(post.date), 'MMMM dd, yyyy')}
-                        </time>
-                        <Link href={`/posts/${post.slug}`} className="btn btn-primary btn-sm">
-                          Read More →
-                        </Link>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+              <div className="grid gap-8">
+                {posts.slice(0, 6).map((post, index) => {
+                  const gradients = [
+                    'from-purple-500 to-pink-500',
+                    'from-blue-500 to-cyan-500', 
+                    'from-green-500 to-teal-500',
+                    'from-orange-500 to-red-500',
+                    'from-indigo-500 to-purple-500',
+                    'from-pink-500 to-rose-500'
+                  ];
+                  const gradient = gradients[index % gradients.length];
+                  
+                  return (
+                    <Link key={post.slug} href={`/posts/${post.slug}`}>
+                      <article className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all cursor-pointer group overflow-hidden">
+                        <div className={`h-64 bg-gradient-to-br ${gradient} relative`}>
+                          <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                          <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <div className="flex gap-2 mb-3">
+                              {post.tags.slice(0, 2).map((tag) => (
+                                <span key={tag} className="badge badge-neutral badge-sm">{tag}</span>
+                              ))}
+                            </div>
+                            <h3 className="text-white text-2xl font-bold mb-2 group-hover:underline">{post.title}</h3>
+                            <p className="text-white/90 text-sm">Read our latest guide about {post.title.toLowerCase()}</p>
+                          </div>
+                        </div>
+                        
+                        <div className="card-body">
+                          <div className="flex items-center gap-4 text-sm text-base-content/60">
+                            <span className="flex items-center gap-1">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                              {format(new Date(post.date), 'MMM dd, yyyy')}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              5 min read
+                            </span>
+                          </div>
+                        </div>
+                      </article>
+                    </Link>
+                  );
+                })}
               </div>
             </section>
 
             {/* Categories Grid */}
             <section className="mb-12">
               <h2 className="text-3xl font-bold mb-6">Browse by Topic</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Link href="/category/sim" className="card bg-gradient-to-br from-primary to-primary-focus text-primary-content hover:shadow-xl transition-all">
-                  <div className="card-body items-center text-center">
-                    <svg className="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                    <h3 className="card-title">SIM Cards</h3>
-                    <p className="text-sm opacity-90">Complete guides to Japan SIM cards</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Link href="/category/sim" className="group">
+                  <div className="card bg-gradient-to-br from-purple-500 to-pink-500 text-white h-48 hover:shadow-2xl transition-all group-hover:scale-105">
+                    <div className="card-body items-center justify-center text-center">
+                      <svg className="w-16 h-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                      <h3 className="card-title text-xl">SIM Cards</h3>
+                      <p className="text-sm opacity-90">15 Articles</p>
+                    </div>
                   </div>
                 </Link>
                 
-                <Link href="/category/wifi" className="card bg-gradient-to-br from-secondary to-secondary-focus text-secondary-content hover:shadow-xl transition-all">
-                  <div className="card-body items-center text-center">
-                    <svg className="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                    </svg>
-                    <h3 className="card-title">Pocket WiFi</h3>
-                    <p className="text-sm opacity-90">WiFi rental options and reviews</p>
+                <Link href="/category/wifi" className="group">
+                  <div className="card bg-gradient-to-br from-blue-500 to-cyan-500 text-white h-48 hover:shadow-2xl transition-all group-hover:scale-105">
+                    <div className="card-body items-center justify-center text-center">
+                      <svg className="w-16 h-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                      </svg>
+                      <h3 className="card-title text-xl">Pocket WiFi</h3>
+                      <p className="text-sm opacity-90">20 Articles</p>
+                    </div>
                   </div>
                 </Link>
                 
-                <Link href="/category/transport" className="card bg-gradient-to-br from-accent to-accent-focus text-accent-content hover:shadow-xl transition-all">
-                  <div className="card-body items-center text-center">
-                    <svg className="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
-                    <h3 className="card-title">JR Pass</h3>
-                    <p className="text-sm opacity-90">Train pass guides and calculators</p>
+                <Link href="/category/transport" className="group">
+                  <div className="card bg-gradient-to-br from-orange-500 to-red-500 text-white h-48 hover:shadow-2xl transition-all group-hover:scale-105">
+                    <div className="card-body items-center justify-center text-center">
+                      <svg className="w-16 h-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                      <h3 className="card-title text-xl">JR Pass</h3>
+                      <p className="text-sm opacity-90">12 Articles</p>
+                    </div>
                   </div>
                 </Link>
               </div>
