@@ -43,6 +43,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="cupcake">
+      <head>
+        <link 
+          href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" 
+          rel="stylesheet" 
+          type="text/css" 
+        />
+      </head>
       <body className={inter.className}>
         <GoogleAnalytics />
         <div className="min-h-screen flex flex-col bg-base-100">
