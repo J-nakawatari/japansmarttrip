@@ -29,48 +29,41 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="grid gap-8">
+              <div className="grid gap-6">
                 {posts.slice(0, 6).map((post, index) => {
-                  const gradients = [
-                    'from-purple-500 to-pink-500',
-                    'from-blue-500 to-cyan-500', 
-                    'from-green-500 to-teal-500',
-                    'from-orange-500 to-red-500',
-                    'from-indigo-500 to-purple-500',
-                    'from-pink-500 to-rose-500'
-                  ];
-                  const gradient = gradients[index % gradients.length];
+                  const colors = ['primary', 'secondary', 'accent'];
+                  const color = colors[index % colors.length];
                   
                   return (
                     <Link key={post.slug} href={`/posts/${post.slug}`}>
-                      <article className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all cursor-pointer group overflow-hidden">
-                        <div className={`h-64 bg-gradient-to-br ${gradient} relative`}>
-                          <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                          <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <div className="flex gap-2 mb-3">
-                              {post.tags.slice(0, 2).map((tag) => (
-                                <span key={tag} className="badge badge-neutral badge-sm">{tag}</span>
-                              ))}
-                            </div>
-                            <h3 className="text-white text-2xl font-bold mb-2 group-hover:underline">{post.title}</h3>
-                            <p className="text-white/90 text-sm">Read our latest guide about {post.title.toLowerCase()}</p>
+                      <article className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all cursor-pointer group">
+                        <figure className={`h-48 bg-${color} bg-opacity-20`}>
+                          <div className="w-full h-full flex items-center justify-center">
+                            <svg className={`w-24 h-24 text-${color} opacity-50`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
                           </div>
-                        </div>
+                        </figure>
                         
                         <div className="card-body">
-                          <div className="flex items-center gap-4 text-sm text-base-content/60">
-                            <span className="flex items-center gap-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
+                          <div className="flex gap-2 mb-2">
+                            {post.tags.slice(0, 2).map((tag) => (
+                              <span key={tag} className={`badge badge-${color} badge-sm`}>{tag}</span>
+                            ))}
+                          </div>
+                          <h3 className="card-title text-xl group-hover:text-primary transition-colors">{post.title}</h3>
+                          <p className="text-base-content/70 text-sm">Discover everything you need to know about {post.title.toLowerCase()} in Japan.</p>
+                          
+                          <div className="card-actions justify-between items-center mt-4">
+                            <time className="text-sm text-base-content/60" dateTime={post.date}>
                               {format(new Date(post.date), 'MMM dd, yyyy')}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </time>
+                            <button className="btn btn-primary btn-sm">
+                              Read More
+                              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                               </svg>
-                              5 min read
-                            </span>
+                            </button>
                           </div>
                         </div>
                       </article>
@@ -85,7 +78,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold mb-6">Browse by Topic</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Link href="/category/sim" className="group">
-                  <div className="card bg-gradient-to-br from-purple-500 to-pink-500 text-white h-48 hover:shadow-2xl transition-all group-hover:scale-105">
+                  <div className="card bg-primary text-primary-content h-48 hover:shadow-2xl transition-all group-hover:scale-105">
                     <div className="card-body items-center justify-center text-center">
                       <svg className="w-16 h-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -97,7 +90,7 @@ export default function Home() {
                 </Link>
                 
                 <Link href="/category/wifi" className="group">
-                  <div className="card bg-gradient-to-br from-blue-500 to-cyan-500 text-white h-48 hover:shadow-2xl transition-all group-hover:scale-105">
+                  <div className="card bg-secondary text-secondary-content h-48 hover:shadow-2xl transition-all group-hover:scale-105">
                     <div className="card-body items-center justify-center text-center">
                       <svg className="w-16 h-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
@@ -109,7 +102,7 @@ export default function Home() {
                 </Link>
                 
                 <Link href="/category/transport" className="group">
-                  <div className="card bg-gradient-to-br from-orange-500 to-red-500 text-white h-48 hover:shadow-2xl transition-all group-hover:scale-105">
+                  <div className="card bg-accent text-accent-content h-48 hover:shadow-2xl transition-all group-hover:scale-105">
                     <div className="card-body items-center justify-center text-center">
                       <svg className="w-16 h-16 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />

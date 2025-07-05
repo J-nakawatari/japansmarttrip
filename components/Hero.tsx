@@ -1,14 +1,12 @@
 export default function Hero() {
   return (
-    <div className="relative min-h-[500px] overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 opacity-90"></div>
-      <div className="absolute inset-0 bg-black opacity-20"></div>
-      <div className="relative container mx-auto px-4 py-24">
-        <div className="text-center text-white">
+    <div className="hero min-h-[500px] bg-gradient-to-br from-primary to-secondary text-primary-content">
+      <div className="hero-content text-center py-24">
+        <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
             Japan Sim Trip
           </h1>
-          <p className="text-xl md:text-2xl mb-12 font-light max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl mb-12 font-light opacity-90">
             Your complete guide to staying connected in Japan with SIM cards, pocket WiFi, and JR Pass
           </p>
           <div className="flex flex-wrap gap-4 justify-center mb-12">
@@ -31,18 +29,18 @@ export default function Hero() {
               JR Pass Info
             </button>
           </div>
-          <div className="grid grid-cols-3 gap-8 max-w-lg mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold mb-1">50+</div>
-              <div className="text-sm opacity-75">Articles</div>
+          <div className="stats stats-primary shadow-xl">
+            <div className="stat">
+              <div className="stat-value">50+</div>
+              <div className="stat-desc">Articles</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold mb-1">24/7</div>
-              <div className="text-sm opacity-75">Support</div>
+            <div className="stat">
+              <div className="stat-value">24/7</div>
+              <div className="stat-desc">Support</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold mb-1">2025</div>
-              <div className="text-sm opacity-75">Updated</div>
+            <div className="stat">
+              <div className="stat-value">2025</div>
+              <div className="stat-desc">Updated</div>
             </div>
           </div>
         </div>
